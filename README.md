@@ -156,6 +156,26 @@ mutation CreateCat($cat: CatInput!, $fastLoad: Boolean){
 }
 ```
 
+## Subscription example
+
+### Subscribe
+```
+subscription {
+  catCount
+}
+```
+### Create a cat
+```
+mutation {
+  createCat(cat: {
+    name: "Fire",
+    colors: [RED]
+  }) {
+    id
+  }
+}
+```
+
 ## Fragment example
 
 ```

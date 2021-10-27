@@ -2,6 +2,8 @@ schema {
     query: Query
 
     mutation: Mutation
+
+    subscription: Subscription
 }
 
 type Query {
@@ -12,6 +14,10 @@ type Query {
 
 type Mutation {
     createCat(cat: CatInput!): Cat!
+}
+
+type Subscription {
+    catCount: Int!
 }
 
 interface Pet {

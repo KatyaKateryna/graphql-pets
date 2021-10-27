@@ -3,6 +3,7 @@ package com.softserve.graphqlpets.service.impl;
 import com.softserve.graphqlpets.dto.Cat;
 import com.softserve.graphqlpets.dto.CatInput;
 import com.softserve.graphqlpets.dto.Color;
+import com.softserve.graphqlpets.reactive.CatCountPublisher;
 import com.softserve.graphqlpets.service.CatService;
 import graphql.com.google.common.collect.Sets;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CatServiceImpl implements CatService {
 
     private final Map<UUID, Cat> cats = new ConcurrentHashMap<>();
+
+    private final CatCountPublisher catCountPublisher;
+
+    public CatServiceImpl(CatCountPublisher catCountPublisher) {
+        this.catCountPublisher = catCountPublisher;
+    }
 
     @PostConstruct
     private void setUp() {
@@ -37,6 +44,7 @@ public class CatServiceImpl implements CatService {
         Cat newCat = new Cat(UUID.randomUUID(), cat.getName(), cat.getColors() == null ? Collections.emptySet() : cat.getColors());
 
         cats.put(newCat.getId(), newCat);
+        catCountPublisher.publish(cats.size());
 
         return newCat;
     }
