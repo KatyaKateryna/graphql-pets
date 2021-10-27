@@ -9,6 +9,8 @@ schema {
 type Query {
     cat(id: UUID!): Cat
 
+    allCats: [Cat!]!
+
     pet(id: UUID!): Pet
 }
 

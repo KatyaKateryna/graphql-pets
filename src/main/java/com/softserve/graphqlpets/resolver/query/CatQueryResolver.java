@@ -5,6 +5,7 @@ import com.softserve.graphqlpets.service.CatService;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.UUID;
 
 @Component
@@ -18,5 +19,9 @@ public class CatQueryResolver implements GraphQLQueryResolver {
 
     public Cat cat(UUID id) {
         return catService.findById(id);
+    }
+
+    public Collection<Cat> allCats() {
+        return catService.getAllCats();
     }
 }

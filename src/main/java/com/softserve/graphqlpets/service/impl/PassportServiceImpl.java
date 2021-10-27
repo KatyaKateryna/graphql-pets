@@ -7,7 +7,9 @@ import com.softserve.graphqlpets.service.PassportService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class PassportServiceImpl implements PassportService {
@@ -25,5 +27,12 @@ public class PassportServiceImpl implements PassportService {
         }
 
         return new InternalPassport(LocalDate.now());
+    }
+
+    @Override
+    public List<Passport> getPassports(List<UUID> catIds, boolean fastLoad) {
+        return catIds.stream()
+                .map(id -> getPassport(id, fastLoad))
+                .collect(Collectors.toList());
     }
 }

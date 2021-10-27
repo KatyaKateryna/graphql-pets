@@ -10,6 +10,7 @@ import graphql.com.google.common.collect.Sets;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.UUID;
@@ -52,5 +53,10 @@ public class CatServiceImpl implements CatService {
         catCountPublisher.publish(cats.size());
 
         return newCat;
+    }
+
+    @Override
+    public Collection<Cat> getAllCats() {
+        return cats.values();
     }
 }
