@@ -13,7 +13,7 @@ Clients can be enabled or disabled in the `application.yml` file.
 
 ```
 query {
-  cat(id: 1) {
+  cat(id: "00000000-0000-0000-0000-000000000001") {
     id
     name
     colors
@@ -34,7 +34,7 @@ query {
 ### Value passed as a variable
 
 ```
-query Cat ($id: ID!, $fastLoad: Boolean) {
+query Cat ($id: UUID!, $fastLoad: Boolean) {
   cat(id: $id) {
     id
     name
@@ -56,14 +56,14 @@ query Cat ($id: ID!, $fastLoad: Boolean) {
 #### Variables:
 
 ```
-{"id": 1, "fastLoad": true}
+{"id": "00000000-0000-0000-0000-000000000001", "fastLoad": true}
 ```
 
 ### Query with interface
 
 ```
 query {
-  pet(id: 0) {
+  pet(id: "00000000-0000-0000-0000-000000000000") {
     __typename
     id
     name
@@ -142,7 +142,7 @@ mutation CreateCat($cat: CatInput!, $fastLoad: Boolean){
 
 ```
 query {
-  cat(id: 1) {
+  cat(id: "00000000-0000-0000-0000-000000000001") {
     ...CatFragment
   }
 }

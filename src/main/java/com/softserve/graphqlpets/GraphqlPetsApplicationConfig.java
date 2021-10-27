@@ -4,6 +4,7 @@ import com.softserve.graphqlpets.dto.Cat;
 import com.softserve.graphqlpets.dto.Dog;
 import com.softserve.graphqlpets.dto.InternalPassport;
 import com.softserve.graphqlpets.dto.InternationalPassport;
+import com.softserve.graphqlpets.util.UuidCoercing;
 import graphql.kickstart.tools.SchemaParserDictionary;
 import graphql.schema.GraphQLScalarType;
 import org.springframework.context.annotation.Bean;
@@ -35,5 +36,14 @@ public class GraphqlPetsApplicationConfig {
     @Bean
     public GraphQLScalarType dateScalar() {
         return Date;
+    }
+
+    @Bean
+    public GraphQLScalarType uuidScalarType() {
+        return GraphQLScalarType.newScalar()
+                .name("UUID")
+                .description("A valid UUID")
+                .coercing(new UuidCoercing())
+                .build();
     }
 }

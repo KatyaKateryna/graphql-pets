@@ -7,12 +7,13 @@ import com.softserve.graphqlpets.service.PassportService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Service
 public class PassportServiceImpl implements PassportService {
 
     @Override
-    public Passport getPassport(Integer catId, boolean fastLoad) {
+    public Passport getPassport(UUID catId, boolean fastLoad) {
         if (!fastLoad) {
             try {
                 Thread.sleep(5000);

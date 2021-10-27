@@ -10,32 +10,33 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class CatServiceImpl implements CatService {
 
-    private final Map<Integer, Cat> cats = new ConcurrentHashMap<>();
-    private int nextId;
+    private final Map<UUID, Cat> cats = new ConcurrentHashMap<>();
 
     @PostConstruct
     private void setUp() {
-        cats.put(1, new Cat(1, "Foo", Sets.immutableEnumSet(Color.BLACK)));
-        cats.put(2, new Cat(2, "Bar", Sets.immutableEnumSet(Color.RED, Color.WHITE)));
+        Cat foo = new Cat(UUID.fromString("00000000-0000-0000-0000-000000000001"), "Foo", Sets.immutableEnumSet(Color.BLACK));
+        Cat bar = new Cat(UUID.fromString("00000000-0000-0000-0000-000000000002"), "Bar", Sets.immutableEnumSet(Color.RED, Color.WHITE));
 
-        nextId = 3;
+        cats.put(foo.getId(), foo);
+        cats.put(bar.getId(), bar);
     }
 
     @Override
-    public Cat findById(Integer id) {
+    public Cat findById(UUID id) {
         return cats.get(id);
     }
 
     @Override
     public Cat createCat(CatInput cat) {
-        Cat newCat = new Cat(nextId, cat.getName(), cat.getColors() == null ? Collections.emptySet() : cat.getColors());
+        Cat newCat = new Cat(UUID.randomUUID(), cat.getName(), cat.getColors() == null ? Collections.emptySet() : cat.getColors());
 
-        cats.put(nextId++, newCat);
+        cats.put(newCat.getId(), newCat);
 
         return newCat;
     }

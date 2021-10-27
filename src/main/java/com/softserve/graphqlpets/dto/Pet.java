@@ -1,7 +1,9 @@
 package com.softserve.graphqlpets.dto;
 
+import java.util.UUID;
+
 public interface Pet {
-    Integer getId();
+    UUID getId();
 
     String getName();
 }

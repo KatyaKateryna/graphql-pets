@@ -5,9 +5,9 @@ schema {
 }
 
 type Query {
-    cat(id: ID!): Cat
+    cat(id: UUID!): Cat
 
-    pet(id: ID!): Pet
+    pet(id: UUID!): Pet
 }
 
 type Mutation {
@@ -15,19 +15,19 @@ type Mutation {
 }
 
 interface Pet {
-    id: ID!
+    id: UUID!
     name: String!
 }
 
 type Cat implements Pet {
-    id: ID!
+    id: UUID!
     name: String!
     colors: [Color!]!
     passport(fastLoad: Boolean = false): Passport
 }
 
 type Dog implements Pet {
-    id: ID!
+    id: UUID!
     name: String!
     breed: String
 }
@@ -56,3 +56,4 @@ enum Color {
 }
 
 scalar Date
+scalar UUID
