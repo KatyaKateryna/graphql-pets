@@ -1,0 +1,15 @@
+query Cat($id: UUID!) {
+    cat(id: $id) {
+        id
+        name
+        colors
+        passport(fastLoad: true) {
+            ... on InternalPassport {
+                birthDate
+            }
+            ... on InternationalPassport {
+                vaccinationDate
+            }
+        }
+    }
+}

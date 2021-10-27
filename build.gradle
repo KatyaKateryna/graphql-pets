@@ -23,6 +23,9 @@ dependencies {
 	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:12.0.0'
 
 	implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:12.0.0'
 }
 
 test {
