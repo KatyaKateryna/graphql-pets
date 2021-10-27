@@ -1,0 +1,32 @@
+schema {
+    query: Query
+
+    mutation: Mutation
+}
+
+type Query {
+    cat(id: ID!): Cat
+}
+
+type Mutation {
+    createCat(cat: CatInput!): Cat!
+}
+
+type Cat {
+    id: ID!
+    name: String!
+    colors: [Color!]!
+}
+
+input CatInput {
+    name: String!
+    colors: [Color!]
+}
+
+enum Color {
+    BLACK
+    WHITE
+    RED
+    GRAY
+    BROWN
+}

@@ -1,0 +1,5 @@
+graphql:
+  playground:
+    enabled: true
+  graphiql:
+    enabled: true
