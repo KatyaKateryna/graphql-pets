@@ -15,7 +15,7 @@ public class CatResolver implements GraphQLResolver<Cat> {
         this.passportService = passportService;
     }
 
-    public Passport passport(Cat cat) {
-        return passportService.getPassport(cat.getId());
+    public Passport passport(Cat cat, boolean fastLoad) {
+        return passportService.getPassport(cat.getId(), fastLoad);
     }
 }

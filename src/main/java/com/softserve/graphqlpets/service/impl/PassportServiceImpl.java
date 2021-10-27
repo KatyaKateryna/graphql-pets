@@ -11,11 +11,13 @@ import java.time.format.DateTimeFormatter;
 public class PassportServiceImpl implements PassportService {
 
     @Override
-    public Passport getPassport(Integer catId) {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public Passport getPassport(Integer catId, boolean fastLoad) {
+        if (!fastLoad) {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         return new Passport(LocalDate.now().format(DateTimeFormatter.ISO_DATE));

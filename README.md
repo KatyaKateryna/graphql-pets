@@ -17,7 +17,7 @@ query {
     name
     colors
     __typename
-    passport {
+    passport(fastLoad: true) {
       birthDate
     }
   }
@@ -26,13 +26,13 @@ query {
 
 ### Value passed as a variable
 ```
-query Cat ($id: ID!) {
+query Cat ($id: ID!, $fastLoad: Boolean) {
   cat(id: $id) {
     id
     name
     colors
     __typename
-    passport {
+    passport(fastLoad: $fastLoad) {
       birthDate
     }
   }
@@ -40,7 +40,7 @@ query Cat ($id: ID!) {
 ```
 #### Variables:
 ```
-{"id": 1}
+{"id": 1, "fastLoad": true}
 ```
 
 ## Mutation example
@@ -56,7 +56,7 @@ mutation {
     name
     colors
     __typename
-    passport {
+    passport(fastLoad: true) {
       birthDate
     }
   }
@@ -66,13 +66,13 @@ mutation {
 ### Input passed as a variable
 
 ```
-mutation CreateCat($cat: CatInput!){
+mutation CreateCat($cat: CatInput!, $fastLoad: Boolean){
   createCat(cat: $cat) {
     id
     name
     colors
     __typename
-    passport {
+    passport(fastLoad: $fastLoad) {
       birthDate
     }
   }
@@ -84,7 +84,8 @@ mutation CreateCat($cat: CatInput!){
   "cat": {
     "name": "Fire",
     "colors": ["RED"]
-  }
+  },
+  "fastLoad": true
 }
 ```
 
@@ -102,7 +103,7 @@ fragment CatFragment on Cat {
   name
   colors
   __typename
-  passport {
+  passport(fastLoad: true) {
     birthDate
   }
 }

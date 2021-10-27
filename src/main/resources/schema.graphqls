@@ -16,7 +16,7 @@ type Cat {
     id: ID!
     name: String!
     colors: [Color!]!
-    passport: Passport
+    passport(fastLoad: Boolean = false): Passport
 }
 
 type Passport {
