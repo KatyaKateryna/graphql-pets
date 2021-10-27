@@ -59,6 +59,32 @@ query Cat ($id: UUID!, $fastLoad: Boolean) {
 {"id": "00000000-0000-0000-0000-000000000001", "fastLoad": true}
 ```
 
+### Query with fragment
+
+```
+query {
+  cat(id: "00000000-0000-0000-0000-000000000001") {
+    ...CatFragment
+  }
+}
+
+fragment CatFragment on Cat {
+  id
+  name
+  colors
+  __typename
+  passport(fastLoad: true) {
+    __typename
+    ... on InternalPassport {
+      birthDate
+    }
+    ... on InternationalPassport {
+      vaccinationDate
+    }
+  }
+}
+```
+
 ### Query with interface
 
 ```
@@ -159,12 +185,15 @@ mutation CreateCat($cat: CatInput!, $fastLoad: Boolean){
 ## Subscription example
 
 ### Subscribe
+
 ```
 subscription {
   catCount
 }
 ```
+
 ### Create a cat
+
 ```
 mutation {
   createCat(cat: {
@@ -172,32 +201,6 @@ mutation {
     colors: [RED]
   }) {
     id
-  }
-}
-```
-
-## Fragment example
-
-```
-query {
-  cat(id: "00000000-0000-0000-0000-000000000001") {
-    ...CatFragment
-  }
-}
-
-fragment CatFragment on Cat {
-  id
-  name
-  colors
-  __typename
-  passport(fastLoad: true) {
-    __typename
-    ... on InternalPassport {
-      birthDate
-    }
-    ... on InternationalPassport {
-      vaccinationDate
-    }
   }
 }
 ```
