@@ -6,17 +6,30 @@ schema {
 
 type Query {
     cat(id: ID!): Cat
+
+    pet(id: ID!): Pet
 }
 
 type Mutation {
     createCat(cat: CatInput!): Cat!
 }
 
-type Cat {
+interface Pet {
+    id: ID!
+    name: String!
+}
+
+type Cat implements Pet {
     id: ID!
     name: String!
     colors: [Color!]!
     passport(fastLoad: Boolean = false): Passport
+}
+
+type Dog implements Pet {
+    id: ID!
+    name: String!
+    breed: String
 }
 
 type Passport {

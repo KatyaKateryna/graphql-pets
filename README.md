@@ -43,6 +43,23 @@ query Cat ($id: ID!, $fastLoad: Boolean) {
 {"id": 1, "fastLoad": true}
 ```
 
+### Query with interface
+```
+query {
+  pet(id: 0) {
+    __typename
+    id
+    name
+    ... on Cat {
+      colors
+    }
+    ... on Dog {
+      breed
+    }
+  }
+}
+```
+
 ## Mutation example
 
 ### Input passed directly into the mutation
