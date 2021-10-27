@@ -3,6 +3,7 @@ package com.softserve.graphqlpets.service.impl;
 import com.softserve.graphqlpets.dto.Cat;
 import com.softserve.graphqlpets.dto.CatInput;
 import com.softserve.graphqlpets.dto.Color;
+import com.softserve.graphqlpets.exception.DuplicateCatException;
 import com.softserve.graphqlpets.reactive.CatCountPublisher;
 import com.softserve.graphqlpets.service.CatService;
 import graphql.com.google.common.collect.Sets;
@@ -41,6 +42,10 @@ public class CatServiceImpl implements CatService {
 
     @Override
     public Cat createCat(CatInput cat) {
+        if (cats.values().stream().anyMatch(c -> c.getName().equals(cat.getName()))) {
+            throw new DuplicateCatException(cat.getName());
+        }
+
         Cat newCat = new Cat(UUID.randomUUID(), cat.getName(), cat.getColors() == null ? Collections.emptySet() : cat.getColors());
 
         cats.put(newCat.getId(), newCat);

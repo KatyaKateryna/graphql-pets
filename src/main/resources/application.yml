@@ -3,3 +3,5 @@ graphql:
     enabled: true
   graphiql:
     enabled: true
+  servlet:
+    exception-handlers-enabled: true
