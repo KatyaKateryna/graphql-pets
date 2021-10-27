@@ -2,6 +2,8 @@ package com.softserve.graphqlpets;
 
 import com.softserve.graphqlpets.dto.Cat;
 import com.softserve.graphqlpets.dto.Dog;
+import com.softserve.graphqlpets.dto.InternalPassport;
+import com.softserve.graphqlpets.dto.InternationalPassport;
 import graphql.kickstart.tools.SchemaParserDictionary;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,8 @@ public class GraphqlPetsApplicationConfig {
         SchemaParserDictionary dictionary = new SchemaParserDictionary();
         dictionary.add(Cat.class);
         dictionary.add(Dog.class);
+        dictionary.add(InternalPassport.class);
+        dictionary.add(InternationalPassport.class);
         return dictionary;
     }
 }

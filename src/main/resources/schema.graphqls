@@ -32,8 +32,14 @@ type Dog implements Pet {
     breed: String
 }
 
-type Passport {
+union Passport = InternalPassport | InternationalPassport
+
+type InternalPassport {
     birthDate: String!
+}
+
+type InternationalPassport {
+    vaccinationDate: String!
 }
 
 input CatInput {

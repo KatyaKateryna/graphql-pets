@@ -10,6 +10,7 @@ Clients can be enabled or disabled in the `application.yml` file.
 ## Query example
 
 ### Value passed directly into the query
+
 ```
 query {
   cat(id: 1) {
@@ -18,13 +19,20 @@ query {
     colors
     __typename
     passport(fastLoad: true) {
-      birthDate
+      __typename
+      ... on InternalPassport {
+        birthDate
+      }
+      ... on InternationalPassport {
+        vaccinationDate
+      }
     }
   }
 }
 ```
 
 ### Value passed as a variable
+
 ```
 query Cat ($id: ID!, $fastLoad: Boolean) {
   cat(id: $id) {
@@ -33,17 +41,26 @@ query Cat ($id: ID!, $fastLoad: Boolean) {
     colors
     __typename
     passport(fastLoad: $fastLoad) {
-      birthDate
+      __typename
+      ... on InternalPassport {
+        birthDate
+      }
+      ... on InternationalPassport {
+        vaccinationDate
+      }
     }
   }
 }
 ```
+
 #### Variables:
+
 ```
 {"id": 1, "fastLoad": true}
 ```
 
 ### Query with interface
+
 ```
 query {
   pet(id: 0) {
@@ -63,6 +80,7 @@ query {
 ## Mutation example
 
 ### Input passed directly into the mutation
+
 ```
 mutation {
   createCat(cat: {
@@ -74,7 +92,13 @@ mutation {
     colors
     __typename
     passport(fastLoad: true) {
-      birthDate
+      __typename
+      ... on InternalPassport {
+        birthDate
+      }
+      ... on InternationalPassport {
+        vaccinationDate
+      }
     }
   }
 }
@@ -90,12 +114,20 @@ mutation CreateCat($cat: CatInput!, $fastLoad: Boolean){
     colors
     __typename
     passport(fastLoad: $fastLoad) {
-      birthDate
+      __typename
+      ... on InternalPassport {
+        birthDate
+      }
+      ... on InternationalPassport {
+        vaccinationDate
+      }
     }
   }
 }
 ```
+
 #### Variables:
+
 ```
 {
   "cat": {
@@ -121,7 +153,13 @@ fragment CatFragment on Cat {
   colors
   __typename
   passport(fastLoad: true) {
-    birthDate
+    __typename
+    ... on InternalPassport {
+      birthDate
+    }
+    ... on InternationalPassport {
+      vaccinationDate
+    }
   }
 }
 ```
