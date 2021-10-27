@@ -16,6 +16,11 @@ type Cat {
     id: ID!
     name: String!
     colors: [Color!]!
+    passport: Passport
+}
+
+type Passport {
+    birthDate: String!
 }
 
 input CatInput {

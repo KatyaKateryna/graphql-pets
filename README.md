@@ -17,6 +17,9 @@ query {
     name
     colors
     __typename
+    passport {
+      birthDate
+    }
   }
 }
 ```
@@ -29,6 +32,9 @@ query Cat ($id: ID!) {
     name
     colors
     __typename
+    passport {
+      birthDate
+    }
   }
 }
 ```
@@ -50,6 +56,9 @@ mutation {
     name
     colors
     __typename
+    passport {
+      birthDate
+    }
   }
 }
 ```
@@ -63,6 +72,9 @@ mutation CreateCat($cat: CatInput!){
     name
     colors
     __typename
+    passport {
+      birthDate
+    }
   }
 }
 ```
@@ -90,5 +102,8 @@ fragment CatFragment on Cat {
   name
   colors
   __typename
+  passport {
+    birthDate
+  }
 }
 ```
