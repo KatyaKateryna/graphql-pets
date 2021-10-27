@@ -7,7 +7,6 @@ import com.softserve.graphqlpets.service.PassportService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Service
 public class PassportServiceImpl implements PassportService {
@@ -21,9 +20,9 @@ public class PassportServiceImpl implements PassportService {
                 e.printStackTrace();
             }
 
-            return new InternationalPassport(LocalDate.now().format(DateTimeFormatter.ISO_DATE));
+            return new InternationalPassport(LocalDate.now());
         }
 
-        return new InternalPassport(LocalDate.now().format(DateTimeFormatter.ISO_DATE));
+        return new InternalPassport(LocalDate.now());
     }
 }

@@ -35,11 +35,11 @@ type Dog implements Pet {
 union Passport = InternalPassport | InternationalPassport
 
 type InternalPassport {
-    birthDate: String!
+    birthDate: Date!
 }
 
 type InternationalPassport {
-    vaccinationDate: String!
+    vaccinationDate: Date!
 }
 
 input CatInput {
@@ -54,3 +54,5 @@ enum Color {
     GRAY
     BROWN
 }
+
+scalar Date

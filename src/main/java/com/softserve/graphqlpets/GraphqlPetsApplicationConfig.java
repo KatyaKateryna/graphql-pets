@@ -5,8 +5,11 @@ import com.softserve.graphqlpets.dto.Dog;
 import com.softserve.graphqlpets.dto.InternalPassport;
 import com.softserve.graphqlpets.dto.InternationalPassport;
 import graphql.kickstart.tools.SchemaParserDictionary;
+import graphql.schema.GraphQLScalarType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import static graphql.scalars.ExtendedScalars.Date;
 
 @Configuration
 public class GraphqlPetsApplicationConfig {
@@ -27,5 +30,10 @@ public class GraphqlPetsApplicationConfig {
         dictionary.add(InternalPassport.class);
         dictionary.add(InternationalPassport.class);
         return dictionary;
+    }
+
+    @Bean
+    public GraphQLScalarType dateScalar() {
+        return Date;
     }
 }
