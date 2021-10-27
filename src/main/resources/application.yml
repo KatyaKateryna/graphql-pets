@@ -5,3 +5,11 @@ graphql:
     enabled: true
   servlet:
     exception-handlers-enabled: true
+    tracing-enabled: true
+    actuator-metrics: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics

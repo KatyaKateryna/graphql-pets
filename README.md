@@ -204,3 +204,37 @@ mutation {
   }
 }
 ```
+
+## Metrics and tracing
+
+### Tracing
+
+Tracing is available under the "TRACING" tab in Playground. You can try to execute the following query
+with `fastLoad: true` and `fastLoad: false` and compare the results.
+
+```
+query {
+  cat(id: "00000000-0000-0000-0000-000000000001") {
+    id
+    passport(fastLoad: false) {
+      ... on InternalPassport {
+        birthDate
+      }
+      ... on InternationalPassport {
+        vaccinationDate
+      }
+    }
+  }
+}
+```
+
+### Metrics
+
+Metrics are available under `{APP_URL}/actuator/metrics/{metric-name}`
+
+#### List of GraphQL metrics
+
+- graphql.timer.query
+- graphql.timer.resolver
+- graphql.websocket.sessions
+- graphql.websocket.subscriptions
