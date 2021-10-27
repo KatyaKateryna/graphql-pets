@@ -51,7 +51,7 @@ enum Color {
     BLACK
     WHITE
     RED
-    GRAY
+    GRAY @deprecated(reason: "We don't accept gray cats anymore")
     BROWN
 }
 

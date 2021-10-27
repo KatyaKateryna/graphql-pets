@@ -77,6 +77,24 @@ query {
 }
 ```
 
+### Query with operation directives
+
+```
+query Cat($id: UUID!, $withColors: Boolean!, $skipName: Boolean = false) {
+  cat(id: $id) {
+    id
+    name @skip(if: $skipName)
+    colors @include(if: $withColors)
+  }
+}
+```
+
+#### Variables:
+
+```
+{"id": "00000000-0000-0000-0000-000000000001", "withColors": true}
+```
+
 ## Mutation example
 
 ### Input passed directly into the mutation
