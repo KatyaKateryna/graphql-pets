@@ -10,10 +10,7 @@ import graphql.com.google.common.collect.Sets;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -37,8 +34,8 @@ public class CatServiceImpl implements CatService {
     }
 
     @Override
-    public Cat findById(UUID id) {
-        return cats.get(id);
+    public Optional<Cat> findById(UUID id) {
+        return Optional.ofNullable(cats.get(id));
     }
 
     @Override

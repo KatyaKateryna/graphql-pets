@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,7 +49,8 @@ class CatQueryResolverTest {
         ObjectNode variables = new ObjectMapper().createObjectNode();
         variables.put("id", catId.toString());
 
-        when(catService.findById(catId)).thenReturn(new Cat(catId, catName, Collections.singleton(catColor)));
+        when(catService.findById(catId))
+                .thenReturn(Optional.of(new Cat(catId, catName, Collections.singleton(catColor))));
         when(passportService.getPassports(Collections.singletonList(catId), true))
                 .thenReturn(Collections.singletonList(new InternalPassport(birthDate)));
 

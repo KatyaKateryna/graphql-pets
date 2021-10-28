@@ -6,6 +6,7 @@ import com.softserve.graphqlpets.service.CatService;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -19,9 +20,9 @@ public class PetQueryResolver implements GraphQLQueryResolver {
         this.catService = catService;
     }
 
-    public Pet pet(UUID id) {
+    public Optional<? extends Pet> pet(UUID id) {
         if (id.equals(UUID_0)) {
-            return new Dog(id, "Fluffy", "Bulldog");
+            return Optional.of(new Dog(id, "Fluffy", "Bulldog"));
         } else {
             return catService.findById(id);
         }

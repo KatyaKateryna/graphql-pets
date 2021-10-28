@@ -6,6 +6,7 @@ import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -17,7 +18,7 @@ public class CatQueryResolver implements GraphQLQueryResolver {
         this.catService = catService;
     }
 
-    public Cat cat(UUID id) {
+    public Optional<Cat> cat(UUID id) {
         return catService.findById(id);
     }
 

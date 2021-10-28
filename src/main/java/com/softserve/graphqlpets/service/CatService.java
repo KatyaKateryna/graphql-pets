@@ -4,10 +4,11 @@ import com.softserve.graphqlpets.dto.Cat;
 import com.softserve.graphqlpets.dto.CatInput;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface CatService {
-    Cat findById(UUID id);
+    Optional<Cat> findById(UUID id);
 
     Cat createCat(CatInput cat);
 
